@@ -193,9 +193,9 @@ function start_game(){
 					frog.xPos = 180;
 					frog.yPos = 475;
 
+					//Allowing the deadfrog image to be shown for a little over a second
 					setTimeout(function(){
 						renderBackground();
-						//ctx.drawImage(img, 40, 360, 30, 30, 180, 475, 25, 25
 					},1250);
 				}
 			}
