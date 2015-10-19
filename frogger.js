@@ -6,11 +6,12 @@ function start_game(){
 	var level = 1;
 	var counter = 0;
 	var wins = 0;
-	var frog = {xPos: 180 , yPos: 475 };
+	var frog = {xPos: 180 , yPos: 475, dir: 'u' };
 
 	var img = new Image();
 	img.src = 'images/frogger_sprites.png';
 
+	
 	img.onload = function(){
 
 
@@ -40,33 +41,28 @@ function start_game(){
 		    ctx.fillStyle = "rgb(00, 00, 00)";
 		    ctx.fillRect(0, 282, 399, 282);
 
-			/*var img = new Image();
-			img.src = 'images/frogger_sprites.png';
-			*/
-
 			/*
 			 *So I remeber what each parameter stands for. Gonna be using drawImage a lot!
 			 *sx source x(Top Left) dx destination x(Top Left)
 			 *ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight 
 			 */
-			//img.onload = function(){
 
-				ctx.drawImage(img, x1, y1, 35, 35, 5, 80, 30, 35);
-				ctx.drawImage(img, x2, y2, 35, 35, 93, 80, 30, 35);
-				ctx.drawImage(img, x3, y3, 35, 35, 181, 80, 30, 35);
-				ctx.drawImage(img, x4, y4, 35, 35, 269, 80, 30, 35);
-				ctx.drawImage(img, x5, y5, 35, 35, 355, 80, 30, 35);
-
-
-				//using number of lives to draw the frogs at the bottom
-				var frogXPos = 0;
-				for(var i = 0; i < lives; i++){
-					ctx.drawImage(img, 10, 325, 30, 30, frogXPos, 515, 20, 20);
-					frogXPos += 15;
-				}
+			/* Rendering the rear, red floating pads*/
+			ctx.drawImage(img, x1, y1, 35, 35, 5, 80, 30, 35);
+			ctx.drawImage(img, x2, y2, 35, 35, 93, 80, 30, 35);
+			ctx.drawImage(img, x3, y3, 35, 35, 181, 80, 30, 35);
+			ctx.drawImage(img, x4, y4, 35, 35, 269, 80, 30, 35);
+			ctx.drawImage(img, x5, y5, 35, 35, 355, 80, 30, 35);
 
 
-				// Grabbing both Frogger and the green map ending 
+			//using number of lives to draw the frogs at the bottom
+			var frogXPos = 0;
+			for(var i = 0; i < lives; i++){
+				ctx.drawImage(img, 10, 325, 30, 30, frogXPos, 515, 20, 20);
+				frogXPos += 15;
+			}
+
+				// Grabbing both the Title Frogger and the green map ending 
 				ctx.drawImage(img, 0, 0, 399, 100, -5, 5, 410, 115);
 
 				//Text at the bottom of te canvas
@@ -81,24 +77,23 @@ function start_game(){
 				ctx.drawImage(img, 0, 120, 399, 30, 0, 283, 399, 30);
 				ctx.drawImage(img, 0, 120, 399, 30, 0, 475, 399, 30);
 
-			//}
 		}//This marks the closing tag for the renderBackground function
 			/**********************************BACKGROUND RENDERED*****************************************/
 
-		var movementSpeed = 1000; //Generic number look to see how changes affect game
+		var movementSpeed = 100; //Generic number look to see how changes affect game
 		setInterval(updateMovingParts, movementSpeed);
 
-		//Creating Variables for all of the moving parts
+		//Creating Variables for the X-positions of the moving parts
 		var lrgLog1 = 400;
 		var lrgLog2 = 150;
 	
-		var medLog1 = 350;
+		var medLog1 = 310;
 		var medLog2 = 150;
 		var medLog3 = 0;
 
-		var smLog1 = 400;
-		var smLog2 = 230;
-		var smLog3 = 100;
+		var smLog1 = 300;
+		var smLog2 = 150;
+		var smLog3 = 0;
 	
 		var trtl1 = 250;
 		var trtl2 = 220;
@@ -110,11 +105,11 @@ function start_game(){
 		var trtl8 = 65;
 	
 		var purpCar1 = 50;
-		var purpCar2 = 150;
-		var purpCar3 = 250;
+		var purpCar2 = 200;
+		var purpCar3 = 350;
 	
 		var yelCar1 = 90;
-		var yelCar2 = 275;
+		var yelCar2 = 230;
 		var yelCar3 = 355;
 		
 		var snake = 415;
@@ -200,7 +195,7 @@ function start_game(){
 
 					setTimeout(function(){
 						renderBackground();
-						ctx.drawImage(img, 40, 360, 30, 30, 180, 475, 25, 25);
+						//ctx.drawImage(img, 40, 360, 30, 30, 180, 475, 25, 25
 					},1250);
 				}
 			}
@@ -226,11 +221,11 @@ function start_game(){
 				ctx.drawImage(img, 0, 165, 190, 30, lrgLog1, 185, 170, 30);
 				ctx.drawImage(img, 0, 165, 190, 30, lrgLog2, 185, 170, 30);
 	
-				if(lrgLog1 > 420){
+				if(lrgLog1 > 399){
 					lrgLog1 = -200;
 				}		
 			
-				if(lrgLog2 > 420){
+				if(lrgLog2 > 399){
 					lrgLog2 = -200;
 				}
 
@@ -239,16 +234,16 @@ function start_game(){
 				ctx.drawImage(img, 0, 195, 210, 30, medLog2, 117, 180, 30);	
 				ctx.drawImage(img, 0, 195, 210, 30, medLog3, 117, 180, 30);
 	
-				if(medLog1 > 420){
-					medLog1 = -150;
+				if(medLog1 > 399){
+					medLog1 = -100;
 				}
 			
-				if(medLog2 > 420){
-					medLog2 = -150;
+				if(medLog2 > 399){
+					medLog2 = -100;
 				}
 			
-				if(medLog3>420){
-					medLog3 = -150;
+				if(medLog3> 399){
+					medLog3 = -100;
 				}
 
 				//draw small logs
@@ -256,15 +251,15 @@ function start_game(){
 				ctx.drawImage(img, 0, 226, 100, 26, smLog2, 219, 90, 25);
 				ctx.drawImage(img, 0, 226, 100, 26, smLog3, 219, 90, 25);
 			
-				if(smLog1 > 420){
+				if(smLog1 > 399){
 					smLog1 = -100;
 				}
 			
-				if(smLog2 > 420){
+				if(smLog2 > 399){
 					smLog2 = -100;
 				}
 			
-				if(smLog3 > 420){
+				if(smLog3 > 399){
 					smLog3 = -100;
 				}
 
@@ -367,25 +362,36 @@ function start_game(){
 				}
 				
 
-				// redraw the froggy
-				ctx.drawImage(img, 40, 360, 30, 30, frog.xPos, frog.yPos, 25, 25);
+				// redraw Frogger 
+				switch(frog.dir){
+					case 'u':
+						ctx.drawImage(img, 0, 360, 35, 30, frog.xPos, frog.yPos, 25, 25);
+						break;
+					case 'd':
+						ctx.drawImage(img, 70, 360, 35, 30, frog.xPos, frog.yPos, 25, 25);
+						break;
+					case 'l':
+						ctx.drawImage(img, 70, 327, 35, 30, frog.xPos, frog.yPos, 25, 25);
+						break;
+					case 'r':
+						ctx.drawImage(img, 0, 325, 35, 30, frog.xPos, frog.yPos, 25, 25);
+						break;
+				}
 				isAlive();
 
 			}
-
-			//start frog
-			ctx.drawImage(img, 40, 360, 30, 30, 180, 475, 25, 25);
 
 		}
 
 
 	}
 
-	// control frogger
+	// control frogger listening for arrow keys
 	document.addEventListener("keydown", function(event){
 	
 	//go up
 		if(event.keyCode == 38){
+			frog.dir = 'u';
 			frog.yPos = frog.yPos - 30;
 			if(frog.yPos == 295){
 				frog.yPos = 285;
@@ -410,6 +416,7 @@ function start_game(){
 		
 	// go down
 		if(event.keyCode == 40){
+			frog.dir = 'd'
 			frog.yPos = frog.yPos + 30;
 			if(frog.yPos == 315){
 				frog.yPos = 325;
@@ -426,8 +433,8 @@ function start_game(){
 		
 	//go left
 		if(event.keyCode == 37){
+			frog.dir = 'l';
 			frog.xPos = frog.xPos - 45;
-			
 			if(frog.xPos < 20){
 				frog.xPos = 0;
 			}
@@ -437,9 +444,10 @@ function start_game(){
 	
 	//go right
 		if(event.keyCode == 39){
+			frog.dir = 'r';
 			frog.xPos = frog.xPos + 45;
 			if(frog.xPos > 350){
-				frog.xPos = 350;
+				frog.xPos = 370;
 			}
 			ctx.drawImage(img, 40, 360, 30, 30, frog.xPos, frog.yPos, 25, 25);
 		}
@@ -449,7 +457,6 @@ function start_game(){
 			if((frog.xPos >= -10 && frog.xPos<= 10) || (frog.xPos >= 80 && frog.xPos <= 100) || (frog.xPos >= 170 && frog.xPos <= 190) || (frog.xPos >= 260 && frog.xPos <= 280) || (frog.xPos >= 340 && frog.xPos <= 360)){
 
 				score += 50;
-				girl = 0;
 				if(frog.xPos >= -10 && frog.xPos<= 10){
 					x1 = 110;
 					y1 = 360;
@@ -470,13 +477,15 @@ function start_game(){
 					x5 = 110;
 					y5 = 360;
 				}
-				background();
+				renderBackground();
 				ctx.drawImage(img, 40, 360, 30, 30, frog.xPos, frog.yPos, 25, 25);
 				wins += 1;
 				if(wins == 5){
 					score += 1000;
 					wins = 0;
-					level += 1;
+					while(level < 2){
+						level += 1;
+					}
 					alert('Congratulations! Level up!');
 					x1 = 135;
 					x2 = 135;
@@ -494,6 +503,7 @@ function start_game(){
 				//yay you won!
 			}
 		}
+
 	});
 
 
@@ -518,7 +528,7 @@ function start_game(){
 		}
 		
 		//check for purple car
-		if(frog.y == 385){
+		if(frog.yPos == 385){
 			if(frog.xPos >= purpCar1-3 && frog.xPos <= purpCar1+3){
 				return false;
 			}
@@ -534,8 +544,6 @@ function start_game(){
 		}
 		
 		//medium logs
-			
-		var distance = 0;
 		
 		if(frog.yPos == 115){
 			if(frog.xPos >= medLog1-2 && frog.xPos <= medLog1+180){
@@ -655,7 +663,7 @@ function start_game(){
 			}
 		}
 		
-		// the lower frog pads things
+		//lower pads
 		if(frog.yPos == 251){
 				if(frog.xPos >= trtl1-20 && frog.xPos<= trtl1+10 || frog.xPos >= trtl2-10 && frog.xPos <= trtl2+20 || frog.xPos >= trtl3-10 && frog.xPos <= trtl3+20){
 				frog.xPos = trtl2;
