@@ -377,7 +377,6 @@ function start_game(){
 						ctx.drawImage(img, 0, 325, 35, 30, frog.xPos, frog.yPos, 25, 25);
 						break;
 				}
-				isAlive();
 
 			}
 
@@ -410,8 +409,6 @@ function start_game(){
 			if(isAlive() == true){
 				score += 10;
 			}
-			
-			console.log(frog.yPos);
 		}
 		
 	// go down
@@ -503,6 +500,8 @@ function start_game(){
 				//yay you won!
 			}
 		}
+
+		event.preventDefault();
 
 	});
 
